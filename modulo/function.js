@@ -47,7 +47,6 @@ const getListarDadosUsuario = function(numero){
 
         //filtro pelo numero
         if(Number(itemWatsUsers.number) == Number(numeroUsuario)){
-            usuario.id = itemWatsUsers.id
             usuario.account = itemWatsUsers.account
             usuario.nickname = itemWatsUsers.nickname
             usuario["created-since"] = itemWatsUsers["created-since"]
@@ -70,7 +69,7 @@ const getListarDadosUsuario = function(numero){
 const getListarDadosContatos = function(numero){
     let numeroUsuario = Number(numero)
     let contatos = []
-    let dadosContatos = {}
+    let retornoFuncao = {"number": numeroUsuario, contatos}
     let status = false
 
     //estrutura de repetição
@@ -81,10 +80,14 @@ const getListarDadosContatos = function(numero){
 
             //estrutura de repetição para entrar nos contatos do ususario
             itemWatsUsers.contacts.forEach(function(itemContacts){
+                //criando a variável dentro do for each
+                let dadosContatos = {}
+
                 dadosContatos.name = itemContacts.name
                 dadosContatos.description = itemContacts.description
+                dadosContatos.description = itemContacts.description
                 dadosContatos.image = itemContacts.image
-                dadosContatos.messagens = itemContacts.messages
+                dadosContatos.messages = itemContacts.messages
                 status = true
                 contatos.push(dadosContatos)
             })
@@ -93,7 +96,7 @@ const getListarDadosContatos = function(numero){
 
     //tratando retorno
     if(status)
-        return contatos
+        return retornoFuncao
     else
         return false
 }
