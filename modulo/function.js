@@ -101,4 +101,44 @@ const getListarDadosContatos = function(numero){
         return false
 }
 
-console.log(getListarDadosContatos(11987876567))
+//função para retornar todas as mensagens de um usuario
+const getListarMensagens = function(numero){
+    let numeroUsuario = Number(numero)
+    let dadosMensagens = {"number": numeroUsuario}
+    let contatos = []
+    let status = false
+
+    //estrutura de repetição para rodar o primeiro array
+    arquivoContatos.contatos["whats-users"].forEach(function(itemWatsUsers){
+        
+        //filtro pelo numero
+        if(Number(numeroUsuario) == Number(itemWatsUsers.number)){
+
+            //estrutura de repetição para entrar nos contatos
+            itemWatsUsers.contacts.forEach(function(itemContacts){
+                contatos.push(itemContacts.name)
+
+                //estrutura de repetição para entrar nas mensagens
+                itemContacts.messages.forEach(function(itemMessages){
+                    let mensagens = {}
+                    mensagens.sender = itemMessages.sender
+                    mensagens.content = itemMessages.content
+                    mensagens.time = itemMessages.time
+                    contatos.push(mensagens)
+                    dadosMensagens.contatos = contatos
+                    status = true
+                })
+
+
+            })
+        }
+    })
+
+    //tratando saida
+    if(status)
+        return dadosMensagens
+    else
+        return false
+}
+
+console.log(getListarMensagens(11987876567))
