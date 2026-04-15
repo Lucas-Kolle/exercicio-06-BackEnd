@@ -233,6 +233,4 @@ const getListarMensagemChave = function(numero, nome, chave){
         return false
 }
 
-
-
-console.log(getListarMensagensContato("11987876567", "Ana Maria", "Hello"))
+console.log(getListarMensagemChave("11966578996", "José Maria da Silva", "me"))
