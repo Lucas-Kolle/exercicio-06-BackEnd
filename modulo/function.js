@@ -141,4 +141,48 @@ const getListarMensagens = function(numero){
         return false
 }
 
-console.log(getListarMensagens(11987876567))
+//função para listar todas as mensagens de um usuario e um contato
+const getListarMensagensContato = function(numero, nome){
+    let numeroUsuario = Number(numero)
+    let nomeContato = nome
+    let status = false
+    let mensagens = {}
+    let mensagensContato = []
+
+    //estrutura de repetição
+    arquivoContatos.contatos["whats-users"].forEach(function(itemWatsUsers){
+
+        //primeiro filtro
+        if(Number(numeroUsuario) == Number(itemWatsUsers.number)){
+
+            mensagens.usuario = itemWatsUsers.account
+            //segunda estrutura de repetição
+            itemWatsUsers.contacts.forEach(function(itemContacts){
+
+                //segundo filtro
+                if(String(nomeContato).toUpperCase() == String(itemContacts.name).toUpperCase()){
+
+                    //terceira estrutura de repetição
+                    itemContacts.messages.forEach(function(itemMessages){
+    
+                    let mensagem = {}
+                    mensagem.sender = itemMessages.sender
+                    mensagem.content = itemMessages.content
+                    mensagem.time = itemMessages.time
+                    mensagensContato.push(mensagem)
+                    mensagens.mensagensContato = mensagensContato
+                    status = true
+
+                    })
+                }
+            })
+        }
+    })
+
+    if(status)
+        return mensagens
+    else
+        return false
+}   
+
+console.log(getListarMensagensContato("11987876567", "Ana Maria"))
