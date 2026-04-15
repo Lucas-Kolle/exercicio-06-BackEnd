@@ -183,6 +183,56 @@ const getListarMensagensContato = function(numero, nome){
         return mensagens
     else
         return false
-}   
+}
 
-console.log(getListarMensagensContato("11987876567", "Ana Maria"))
+const getListarMensagemChave = function(numero, nome, chave){
+    let numeroUsuario = Number(numero)
+    let nomeContato = String(nome)
+    let palavraChave = String(chave)
+    let status = false
+    let mensagens = {}
+    let mensagemChave = []
+
+    //primeira estrututra de repetição
+    arquivoContatos.contatos["whats-users"].forEach(function(itemWatsUsers){
+
+        //primeiro filtro
+        if(Number(numeroUsuario) == Number(itemWatsUsers.number)){
+
+            mensagens.usuario = itemWatsUsers.account
+
+            //segunda estrututura de repetição
+            itemWatsUsers.contacts.forEach(function(itemContacts){
+
+                //segundo filtro
+                if(String(nomeContato).toUpperCase() == String(itemContacts.name).toUpperCase()){
+
+                    //terceira estrutura de repetição
+                    itemContacts.messages.forEach(function(itemMessages){
+
+                        //terceiro filtro
+                        if(String(palavraChave).toUpperCase() == String(itemMessages.sender) || String(palavraChave).toUpperCase() == String(itemMessages.content).toUpperCase()){
+                            let mensagem = {}
+                            mensagem.sender = itemMessages.sender
+                            mensagem.content = itemMessages.content
+                            mensagem.time = itemMessages.time
+                            mensagemChave.push(mensagem)
+                            mensagens["palavra-chave"] = mensagemChave
+                            status = true
+
+                        }
+                    })
+                }
+            })
+        }
+    })
+
+    if(status)
+        return mensagens
+    else
+        return false
+}
+
+
+
+console.log(getListarMensagensContato("11987876567", "Ana Maria", "Hello"))
