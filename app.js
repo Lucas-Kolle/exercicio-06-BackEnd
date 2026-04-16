@@ -78,6 +78,7 @@ app.get("/v1/whatsapp/dados/contatos/usuario/:numero", function(request, respons
     }
 })
 
+//retorna os endPoints disponíveis e uma pequena descrição
 app.get("/v1/whatsapp/help", function(request, response){
     //criando documentação auxiliar da API
     let helpAPI = {
