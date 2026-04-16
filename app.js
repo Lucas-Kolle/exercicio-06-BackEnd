@@ -31,13 +31,21 @@ const corsOption = {
 app.use(cors(corsOption))
 
 //importando funções
-const functions = require("./modulo/function.js")
+const funcoes = require("./modulo/function.js")
 
 //Response -> Retornos da API
 //Request  -> Chegadas de dados da API
 
-//criando endPoints da API
+//CRIANDO ENDPOINTS DA API
 
+//retorna todos os dados
+app.get("/v1/whatsapp/listarDados", function(request, response){
+    //criando variável para guardar a saída da função
+    let listarDados = funcoes.getListarDados()
+
+    response.status(200)        //enviando o status code
+    response.json(listarDados)  //enviando o json
+})
 
 //iniciando uma API para receber requisições
 app.listen(8080, function(){ //decidindo a porta para saída do conteúdo
