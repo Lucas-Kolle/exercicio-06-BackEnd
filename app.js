@@ -63,6 +63,21 @@ app.get("/v1/whatsapp/dados/usuario/:numero", function(request, response){
     }
 })
 
+//retorna os dados de todos os contatos de um usuário filtrando pelo número
+app.get("/v1/whatsapp/dados/contatos/usuario/:numero", function(request, response){
+    let numeroTelefone = request.params.numero
+    let listarDadosContatos = funcoes.getListarDadosContatos(numeroTelefone)
+
+    //tratando erros
+    if(listarDadosContatos){
+        response.status(200)
+        response.json(listarDadosContatos)
+    }else{
+        response.status(404)
+        response.json({"message": "Usuário não encontrado!"})
+    }
+})
+
 app.get("/v1/whatsapp/help", function(request, response){
     //criando documentação auxiliar da API
     let helpAPI = {
@@ -80,7 +95,12 @@ app.get("/v1/whatsapp/help", function(request, response){
             {
                 "id": 2,
                 "Rota": "/v1/whatsapp/dados/usuario/:numero",
-                "Description": "Retorna os dados do usuário filtrando pelo número."
+                "Description": "Retorna os dados do usuário, filtrando pelo número."
+            },
+            {
+                "id": 3,
+                "Rota": "/v1/whatsapp/dados/contatos/usuario/:numero",
+                "Description": "Retorna os dados dos contatos do usuário, filtrando pelo número"
             }
         ]
     }
