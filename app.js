@@ -47,6 +47,27 @@ app.get("/v1/whatsapp/listarDados", function(request, response){
     response.json(listarDados)  //enviando o json
 })
 
+app.get("/v1/whatsapp/help", function(request, response){
+    //criando documentação auxiliar da API
+    let helpAPI = {
+        "API-description": "API para manipular dados do watsapp",
+        "date": "2026-04-16",
+        "Development": "Lucas Kolle",
+        "email": "lucaskolle2020@gmail.com",
+        "Version": "1.0",
+        "endPoints": [
+            {
+                "id": 1,
+                "Rota": "/v1/whatsapp/listarDados",
+                "Description": "Retorna todos os dados da API."
+            }
+        ]
+    }
+
+    response.status(200)
+    response.json(helpAPI)
+})
+
 //iniciando uma API para receber requisições
 app.listen(8080, function(){ //decidindo a porta para saída do conteúdo
     console.log("API funcionando e aguardando requisições...") //vai mostrar no terminal que a API já está funcionando
