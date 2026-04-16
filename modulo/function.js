@@ -233,4 +233,11 @@ const getListarMensagemChave = function(numero, nome, chave){
         return false
 }
 
-console.log(getListarMensagemChave("11966578996", "José Maria da Silva", "me"))
+module.exports = {
+    getListarDados,
+    getListarDadosUsuario,
+    getListarDadosContatos,
+    getListarMensagens,
+    getListarMensagensContato,
+    getListarMensagemChave
+}
