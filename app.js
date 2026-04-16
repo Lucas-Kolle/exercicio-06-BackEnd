@@ -39,12 +39,28 @@ const funcoes = require("./modulo/function.js")
 //CRIANDO ENDPOINTS DA API
 
 //retorna todos os dados
-app.get("/v1/whatsapp/listarDados", function(request, response){
+app.get("/v1/whatsapp/dados", function(request, response){
     //criando variável para guardar a saída da função
     let listarDados = funcoes.getListarDados()
 
     response.status(200)        //enviando o status code
     response.json(listarDados)  //enviando o json
+})
+
+//retorna os dados do usuário filtrando pelo número
+app.get("/v1/whatsapp/dados/usuario/:numero", function(request, response){
+    //criando variáveis
+    let numeroTelefone = request.params.numero
+    let listarDadosUsuario = funcoes.getListarDadosUsuario(numeroTelefone)
+
+    //tratativa de erros
+    if(listarDadosUsuario){
+        response.status(200)
+        response.json(listarDadosUsuario)
+    }else{
+        response.status(404)
+        response.json({"message": "Usuário não encontrado!"})
+    }
 })
 
 app.get("/v1/whatsapp/help", function(request, response){
@@ -58,8 +74,13 @@ app.get("/v1/whatsapp/help", function(request, response){
         "endPoints": [
             {
                 "id": 1,
-                "Rota": "/v1/whatsapp/listarDados",
+                "Rota": "/v1/whatsapp/dados",
                 "Description": "Retorna todos os dados da API."
+            },
+            {
+                "id": 2,
+                "Rota": "/v1/whatsapp/dados/usuario/:numero",
+                "Description": "Retorna os dados do usuário filtrando pelo número."
             }
         ]
     }
