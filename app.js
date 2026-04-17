@@ -78,6 +78,20 @@ app.get("/v1/whatsapp/dados/contatos/usuario/:numero", function(request, respons
     }
 })
 
+//retorna todas as mensagens do usuário
+app.get("/v1/whatsapp/dados/mensagens/usuario/:numero", function(request, response){
+    let numeroUsuario = request.params.numero
+    let mensagensUsuario = funcoes.getListarMensagens(numeroUsuario)
+
+    if(mensagensUsuario){
+        response.status(200)
+        response.json(mensagensUsuario)
+    }else{
+        response.status(404)
+        response.json({"message": "Usuario não encontrado"})
+    }
+})
+
 //retorna os endPoints disponíveis e uma pequena descrição
 app.get("/v1/whatsapp/help", function(request, response){
     //criando documentação auxiliar da API
