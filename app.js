@@ -116,6 +116,11 @@ app.get("/v1/whatsapp/help", function(request, response){
                 "id": 3,
                 "Rota": "/v1/whatsapp/dados/contatos/usuario/:numero",
                 "Description": "Retorna os dados dos contatos do usuário, filtrando pelo número"
+            },
+            {
+                "id": 4,
+                "Rota": "/v1/whatsapp/dados/contatos/usuario/:numero",
+                "Description": "Retorna todas as mensagens encontradas de um usuário, filtrando pelo número"
             }
         ]
     }
