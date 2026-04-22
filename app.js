@@ -107,6 +107,22 @@ app.get("/v1/whatsapp/dados/mensagens/usuario/:numero", function(request, respon
     }
 })
 
+//retorna uma conversa expecífica filtrando pelo numero, nome e frase
+app.get("/v1/whatsapp/dados/mensagens/chave",function(request, response){
+    let numeroUsuario = request.query.numero
+    let nomeContato = request.query.nome
+    let fraseChave = request.query.frase
+    let mensagemChave = funcoes.getListarMensagemChave(numeroUsuario, nomeContato, fraseChave)
+
+    if(mensagemChave){
+        response.status(200)
+        response.json(mensagemChave)
+    }else{
+        response.status(404)
+        response.json({"message": "não encontrei nada com isso"})
+    }
+})
+
 //retorna os endPoints disponíveis e uma pequena descrição
 app.get("/v1/whatsapp/help", function(request, response){
     //criando documentação auxiliar da API
@@ -141,6 +157,11 @@ app.get("/v1/whatsapp/help", function(request, response){
                 "id": 5,
                 "Rota": "/v1/whatsapp/dados/mensagens/usuario/contato/?numero=(número do usuário)&nome=(nome do contato)",
                 "Description": "Retorna todas as mensagens de um usuário com um contato expecífico"
+            },
+            {
+                "id": 6,
+                "Rota": "/v1/whatsapp/dados/mensagens/chave/?numero=(número do usuário)&nome=(nome do contato)&frase=(frase que você deseja encontrar)",
+                "Description": "Retorna uma mensagem específica filtrando pelo número, nome e frase."
             }
         ]
     }
