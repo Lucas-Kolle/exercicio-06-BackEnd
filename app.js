@@ -78,6 +78,21 @@ app.get("/v1/whatsapp/dados/contatos/usuario/:numero", function(request, respons
     }
 })
 
+//retorna todas as mensagens de um usuario e um contato específico
+app.get("/v1/whatsapp/dados/mensagens/usuario/contato/", function(request, response){
+    let numeroUsuario = request.query.numero
+    let nomeContato = request.query.nome
+    let mensagensContato = funcoes.getListarMensagensContato(numeroUsuario, nomeContato)
+
+    if(mensagensContato){
+        response.status(200)
+        response.json(mensagensContato)
+    }else{
+        response.status(404)
+        response.json({"message": "Os dados enviados não estão corretos!"})
+    }
+})
+
 //retorna todas as mensagens do usuário
 app.get("/v1/whatsapp/dados/mensagens/usuario/:numero", function(request, response){
     let numeroUsuario = request.params.numero
@@ -121,6 +136,11 @@ app.get("/v1/whatsapp/help", function(request, response){
                 "id": 4,
                 "Rota": "/v1/whatsapp/dados/contatos/usuario/:numero",
                 "Description": "Retorna todas as mensagens encontradas de um usuário, filtrando pelo número"
+            },
+            {
+                "id": 5,
+                "Rota": "/v1/whatsapp/dados/mensagens/usuario/contato/?numero=(número do usuário)&nome=(nome do contato)",
+                "Description": "Retorna todas as mensagens de um usuário com um contato expecífico"
             }
         ]
     }
