@@ -33,32 +33,55 @@ Fornecer uma base de dados simulada para um sistema estilo WhatsApp, permitindo:
 - Render: https://api-watsapp.onrender.com
 
 ## 📌 EndPoints
+
 ### 🔹 Listar todos os dados
-- GET /v1/whatsapp/dados
+- GET /v1/whatsapp/dados  
+**EXEMPLO:** http://localhost:8080/v1/whatsapp/dados  
+**EXEMPLO:** https://api-watsapp.onrender.com/v1/whatsapp/dados
+
 ### 🔹 Buscar usuário por número
-- GET /v1/whatsapp/dados/usuario/:numero
+- GET /v1/whatsapp/dados/usuario/:numero  
+**EXEMPLO:** http://localhost:8080/v1/whatsapp/dados/usuario/:numero  
+**EXEMPLO:** https://api-watsapp.onrender.com/v1/whatsapp/dados/usuario/:numero
+
 ### 🔹 Listar contatos de um usuário
-- GET /v1/whatsapp/dados/contatos/usuario/:numero
+- GET /v1/whatsapp/dados/contatos/usuario/:numero  
+**EXEMPLO:** http://localhost:8080/v1/whatsapp/dados/contatos/usuario/:numero  
+**EXEMPLO:** https://api-watsapp.onrender.com/v1/whatsapp/dados/contatos/usuario/:numero
+
 ### 🔹 Listar todas as mensagens de um usuário
-- GET /v1/whatsapp/dados/mensagens/usuario/:numero
+- GET /v1/whatsapp/dados/mensagens/usuario/:numero  
+**EXEMPLO:** http://localhost:8080/v1/whatsapp/dados/mensagens/usuario/:numero  
+**EXEMPLO:** https://api-watsapp.onrender.com/v1/whatsapp/dados/mensagens/usuario/:numero
+
 ### 🔹 Mensagens entre usuário e contato
-- GET /v1/whatsapp/dados/mensagens/usuario/contato/?numero=XXXX&nome=XXXX
+- GET /v1/whatsapp/dados/mensagens/usuario/contato/?numero=XXXX&nome=XXXX  
+**EXEMPLO:** http://localhost:8080/v1/whatsapp/dados/mensagens/usuario/contato/?numero=XXXX&nome=XXXX  
+**EXEMPLO:** https://api-watsapp.onrender.com/v1/whatsapp/dados/mensagens/usuario/contato/?numero=XXXX&nome=XXXX
+
 ### 🔹 Buscar mensagem por palavra-chave
-- GET /v1/whatsapp/dados/mensagens/chave/?numero=XXXX&nome=XXXX&frase=XXXX
+- GET /v1/whatsapp/dados/mensagens/chave/?numero=XXXX&nome=XXXX&frase=XXXX  
+**EXEMPLO:** http://localhost:8080/v1/whatsapp/dados/mensagens/chave/?numero=XXXX&nome=XXXX&frase=XXXX  
+**EXEMPLO:** https://api-watsapp.onrender.com/v1/whatsapp/dados/mensagens/chave/?numero=XXXX&nome=XXXX&frase=XXXX
+
 ### 🔹 Documentação auxiliar da API
-- GET /v1/whatsapp/help
+- GET /v1/whatsapp/help  
+**EXEMPLO:** http://localhost:8080/v1/whatsapp/help  
+**EXEMPLO:** https://api-watsapp.onrender.com/v1/whatsapp/help
+
+## 📥 Como importar no Postman
+
+1. Acesse o link da documentação
+2. Clique em "Run in Postman"
+3. Selecione um workspace para importar a collection
+4. Clique em "import"
+5. Pronto! 🚀
+---
+**Acesse a Documentação:**  
+🔗 https://documenter.getpostman.com/view/53707653/2sBXqFPNsT
 
 ## 👨‍💻 Autor
-
-Lucas Kolle
+Lucas Kolle  
 📧 lucaskolle2020@gmail.com  
 💼 http://www.linkedin.com/in/lucas-kolle
 
-
-
-##
-## link do render
-- https://api-watsapp.onrender.com
-
-## Documentação do postman
-- https://documenter.getpostman.com/view/53707653/2sBXqFPNsT
